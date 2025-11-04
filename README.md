@@ -94,7 +94,7 @@ convergents to pi: 3 22/7 333/106 355/113
 
 ```
 
-Now for a useful case :wink:. Suppose you have large Fractions to display.
+Now for a useful case ;-) Suppose you have large Fractions to display.
 That's hard to do in a readable way!
 
 ```python
@@ -232,7 +232,7 @@ precise value. When `.exact` is `True`, calling `get()` with larger
 ```
 
 For any float input, `c.exact` will eventually become `True` as `nfrac`
-increases. But `c.exact` will always remain `False` for an input like
+increases. Bur `c.exact` will always remain `False` for an input like
 `Fraction(2, 3)`.
 
 ```python
@@ -247,6 +247,8 @@ exact at nfrac = 55
 0.1000000000000000055511151231257827021181583404541015625
 >>> print(D(.1)) # the same
 0.1000000000000000055511151231257827021181583404541015625
+>>> c.get(c.nfrac) == str(D(0.1)) # verify!
+True
 
 >>> c = frac2dec(F(2, 3))
 >>> for nfrac in range(8):
