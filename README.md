@@ -94,7 +94,7 @@ convergents to pi: 3 22/7 333/106 355/113
 
 ```
 
-Now for a useful case :wink:. Suppose you have large Fractions to display.
+Now for a useful case ;-) Suppose you have large Fractions to display.
 That's hard to do in a readable way!
 
 ```python
@@ -266,3 +266,32 @@ Traceback (most recent call last):
 ValueError: ('nfrac must be >= 0 not', -1)
 
 ```
+
+## Q&A
+
+**Q:**: Why would anyone want this?
+
+**A**: You may not! It's niche. It came up in the context of voting
+software for proportional representation election methods, where
+reweighting ballots can create fractions with very large denominators
+(over 100 decimal digits). The exact values matter for the purpose of
+figuring out who wins, but for human display along the way such very
+long values are incomprehensible. It just needs to display enough
+information so that humans can easily see the relative order of
+aggregate candidate scores. A dozen decimal digits total is typically
+more than enough for this purpose, and the fewer the better.
+
+**Q**: How accurate is this?
+
+**A**: While it produces decimal literals that approximate the
+infinitely precise values, the method used to produce them is exact: no
+float arithmetic is used, only exact integer arithmetic (including exact
+`Fraction` arithmetic). Results should be reproducible across all
+hardware and Python releases.
+
+**Q**: How fast is it? There's suspiciously little code.
+
+**A**: Yes, speed wasn't a goal. Simplicity was. The code is
+straightforward and "almost obviously" correct. Those are primary goals
+in this project; I have no interest in speeding any of it at the cost of
+clarity.
