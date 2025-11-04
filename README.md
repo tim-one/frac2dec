@@ -152,7 +152,7 @@ returns a decimal literal string, correctly rounded (nearest/even)
 to `nfrac` fractional digits.
 
 Before `.get()` is called, `c.nfrac` is -1, and `c.exact` is `True` if
-and only the value is an exact integer (no fractional part).
+and only if the value is an exact integer (no fractional part).
 
 ```python
 >>> anint = frac2dec(D("0.103e4"))
