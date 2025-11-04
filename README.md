@@ -2,7 +2,7 @@
 Minimal-width formatting of decimal approximations
 
 This module supplies tools to help create nice decimal literals
-for numeric types, particularly of type `fractions.Fraction.
+for numeric types, particularly of type `fractions.Fraction`.
 
 Let's set up some helpers:
 
@@ -140,11 +140,11 @@ Decimal('-80.099999999999994315658113919198513031005859375')
 
 ## Class `frac2dec`
 
-`c = frac2dec(f)` creatss an object that cna be used to show
+`c = frac2dec(f)` creatss an object that can be used to show
 increasingly accurate decimal-string approximations to the number f's
 inifnitely precise value.
 
-`f` can be anything convertiblae to a `fraction.Fraction. `c.get(nfrac)`
+`f` can be anything convertible to a `fraction.Fraction`. `c.get(nfrac)`
 returns a decimal literal string, correctly rounded (nearest/even)
 to `nfrac` fractional digits.
 
