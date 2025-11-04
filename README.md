@@ -101,7 +101,8 @@ That's hard to do in a readable way!
 >>> from random import randrange, seed
 >>> seed(123443210)
 >>> pick = lambda: randrange(10**30)
->>> args = sorted(F(pick(), pick()) for i in range(8))
+>>>
+args = sorted(F(pick(), pick()) for i in range(8))
 >>> for f in args:
 ...     print(f)
 100383010337217770703803396671/873361031336288422121036518616
@@ -280,8 +281,8 @@ reweighting ballots can create fractions with very large denominators
 figuring out who wins, but for human display along the way such very
 long values are incomprehensible. It just needs to display enough
 information so that humans can easily see the relative order of
-aggregate candidate scores. A dozen decimal digits total is typically
-more than enough for this purpose, and the fewer the better.
+aggregate candidate scores. A mere handful of decimal digits total is
+typically enough for this purpose, and the fewer the better.
 
 **Q**: How accurate is this?
 
