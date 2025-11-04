@@ -91,6 +91,6 @@ if __name__ == "__main__":
     TESTFN = "README.md"
     doctest.testmod()
     if os.path.exists(TESTFN):
-        doctest.testfile(TESTFN)
+        print(doctest.testfile(TESTFN))
     else:
         print("tesr file", TESTFN, "not found")
