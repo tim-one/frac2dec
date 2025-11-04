@@ -29,7 +29,7 @@ class frac2dec:
 
         if nfrac < 0:
             raise ValueError("nfrac must be >= 0 not", nfrac)
-        if nfrac == self.nfrac :
+        if nfrac == self.nfrac:
             return self.canned
         self.nfrac = nfrac
         pow10 = 10 ** nfrac
