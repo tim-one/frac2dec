@@ -4,7 +4,7 @@ Minimal-width formatting of decimal approximations
 This module supplies tools to help create nice decimal literals
 for numeric types, particularly of type `fractions.Fraction`.
 
-Let's set up some helpers. This file is exeecuted by Python's doctest
+Let's set up some helpers. This file is executed by Python's doctest
 module to verify all the examples work exactly as shown, so we need to
 define everything we use.
 
