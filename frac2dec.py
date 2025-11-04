@@ -69,7 +69,17 @@ def format_fixed(fs, /, *, minfrac=0, extra=0):
     nfrac = minfrac
     if not nfrac and not all(c. exact for c in cs):
         nfrac = 1
-    while len(set(c.get(nfrac) for c in cs)) < len(unique):
+    while True:
+        alldifferent = True
+        seen = set()
+        for c in cs:
+            this = c.get(nfrac)
+            if this in seen:
+                alldifferent = False
+                break
+            seen.add(this)
+        if alldifferent:
+            break
         nfrac += 1
     nfrac += extra
     final = [u2c[f].get(nfrac) for f in fs]
