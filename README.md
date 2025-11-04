@@ -1,6 +1,22 @@
 # frac2dec
 Minimal-width formatting of decimal approximations
 
+This module supplies tools to help create nice decimal literals
+for numeric types, particularly of type `fractions.Fraction.
+
+Let's set up some helpers:
+
+```python
+>>> from frac2dec import format_fixed, frac2dec
+>>> from fractions import Fraction as F
+>>> from decimal import Decimal as D
+
+>>> def show(fs, **kws):
+...     for s in format_fixed(fs, **kws):
+...         print(s)
+
+```
+
 ## Function `format_fixed()`
 
 `format_fixed(fs, minfrac=0)` ia used to format a compact column of
@@ -17,18 +33,6 @@ printed on successive lines.
 
 In general, and this is the real point, the fewest number of fractional
 digits are used so that non-equal inputs produce different strings.
-
-Let's set up some helpers:
-
-```python
->>> from fractions import Fraction as F
->>> from decimal import Decimal as D
-
->>> def show(fs, **kws):
-...     for s in format_fixed(fs, **kws):
-...         print(s)
-
-```
 
 If all values are exact integers, there is no decimal point:
 
@@ -71,7 +75,7 @@ That's hard to do in a readable way!
 >>> from random import randrange, seed
 >>> seed(123443210)
 >>> pick = lambda: randrange(10**30)
->>> args = sorted(Fraction(pick(), pick()) for i in range(8))
+>>> args = sorted(F(pick(), pick()) for i in range(8))
 >>> for f in args:
 ...     print(f)
 100383010337217770703803396671/873361031336288422121036518616
@@ -135,4 +139,80 @@ Decimal('-80.099999999999994315658113919198513031005859375')
 ```
 
 ## Class `frac2dec`
-XXX TODO
+
+`c = frac2dec(f)` creatss an object that cna be used to show
+increasingly accurate decimal-string approximations to the number f's
+inifnitely precise value.
+
+`f` can be anything convertiblae to a `fraction.Fraction. `c.get(nfrac)`
+returns a decimal literal string, correctly rounded (nearest/even)
+to `nfrac` fractional digits.
+
+Before `.get()` is called, `c.nfrac` is -1, and `c.exact` is `True` if
+and only the value is an exact integer (no fractional part).
+
+```python
+>>> anint = frac2dec(D("0.103e4"))
+>>> anint.nfrac; anint.exact
+-1
+True
+>>> notint = frac2dec(D("10.3"))
+>>> notint.nfrac; notint.exact
+-1
+False
+
+```
+
+After calling `c.get(nfrac)`, `c.nfrac` is `nfrac`, and `c.exact` is
+`True` if and only if the string returned reproduces the exact infinitely
+precise value. When `.exact` is `True`, calling `get()` with larger
+`nfrac` values will only add trailing zeroes.
+
+
+```python
+>>> c = frac2dec(F(-7, 4))
+>>> for nfrac in range(5):
+...     print(c.get(nfrac), c.nfrac, c.exact)
+-2 0 False
+-1.8 1 False
+-1.75 2 True
+-1.750 3 True
+-1.7500 4 True
+
+```
+
+For any float input, `c.exact` will eventually become `True` as `nfrac`
+increases. Bur `c.exact` will always remain `False` for an input like
+`Fraction(2, 3)`.
+
+```python
+>>> c = frac2dec(0.1)
+>>> for nfrac in range(505):
+...     ignore = c.get(nfrac)
+...     if c.exact:
+...         break
+>>> print("exact at nfrac =", c.nfrac)
+exact at nfrac = 55
+>>> print(c.get(c.nfrac))
+0.1000000000000000055511151231257827021181583404541015625
+>>> print(D(.1)) # the same
+0.1000000000000000055511151231257827021181583404541015625
+
+>>> c = frac2dec(F(2, 3))
+>>> for nfrac in range(8):
+...     print(c.get(nfrac), c.exact)
+1 False
+0.7 False
+0.67 False
+0.667 False
+0.6667 False
+0.66667 False
+0.666667 False
+0.6666667 False
+
+>>> c.get(-1)
+Traceback (most recent call last):
+  ...
+ValueError: ('nfrac must be >= 0 not', -1)
+
+```
