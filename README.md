@@ -232,7 +232,7 @@ precise value. When `.exact` is `True`, calling `get()` with larger
 ```
 
 For any float input, `c.exact` will eventually become `True` as `nfrac`
-increases. Bur `c.exact` will always remain `False` for an input like
+increases. But `c.exact` will always remain `False` for an input like
 `Fraction(2, 3)`.
 
 ```python
