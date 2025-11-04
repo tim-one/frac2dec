@@ -284,6 +284,13 @@ information so that humans can easily see the relative order of
 aggregate candidate scores. A mere handful of decimal digits total is
 typically enough for this purpose, and the fewer the better.
 
+Note: in that context, while denominators can become very large, so can
+numerators. An aggregate score is typically in a range from 0 to a small
+multiple of the number of voters. So rhe number of digits in the integer
+part of the ratio is always reasonably small. That's the why focus here
+is on minimizing the number of fractional digits.
+
+
 **Q**: How accurate is this?
 
 **A**: While it produces decimal literals that approximate the
