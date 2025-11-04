@@ -94,7 +94,7 @@ convergents to pi: 3 22/7 333/106 355/113
 
 ```
 
-Now for a useful case ;-) Suppose you have large Fractions to display.
+Now for a useful case :wink:. Suppose you have large Fractions to display.
 That's hard to do in a readable way!
 
 ```python
