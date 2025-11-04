@@ -2,9 +2,12 @@
 Minimal-width formatting of decimal approximations
 
 This module supplies tools to help create nice decimal literals
-for numeric types, particularly of type `fractions.Fraction`.
+for numeric types, particularly of type `fractions.Fraction.
 
-Let's set up some helpers:
+Let's set up some helpers. This file is exeecuted by Python's doctest
+module to verify all the examples work exactly as shown, so we need to
+define everything we use.
+
 
 ```python
 >>> from frac2dec import format_fixed, frac2dec
@@ -133,18 +136,18 @@ What happened to -80.1? That's in fact the correctly rounded decimal
 approximation to the binary approximation floats use for -80.1.
 
 ```python
->>> D(-80.1) # rhw exact decimal value
+>>> D(-80.1) # thw exact decimal value
 Decimal('-80.099999999999994315658113919198513031005859375')
 
 ```
 
 ## Class `frac2dec`
 
-`c = frac2dec(f)` creates an object that can be used to show
+`c = frac2dec(f)` creatws an object that can be used to show
 increasingly accurate decimal-string approximations to the number f's
-inifnitely precise value.
+infinitely precise value.
 
-`f` can be anything convertible to a `fraction.Fraction`. `c.get(nfrac)`
+`f` can be anything convertible to a `fraction.Fraction. `c.get(nfrac)`
 returns a decimal literal string, correctly rounded (nearest/even)
 to `nfrac` fractional digits.
 
