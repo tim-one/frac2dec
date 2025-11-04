@@ -22,9 +22,9 @@ define everything we use.
 
 ## Function `format_fixed()`
 
-`format_fixed(fs, minfrac=0)` ia used to format a compact column of
-numbers. `fs` is an iterable of numbers, which can be of any type
-convertible to Fraction (int, float, Fraction, Decimal). Such
+`format_fixed(fs, /, *, minfrac=0, extra=0)` ia used to format a compact
+column of numbers. `fs` is an iterable of numbers, which can be of any
+type convertible to Fraction (int, float, Fraction, Decimal). Such
 conversions are exact.
 
 Return a list of strings, one per input number. Each string is a decimal
@@ -68,6 +68,29 @@ be produced even if all the inputs round to different integers:
 7.0
 8.0
 9.0
+
+```
+
+Keyword argument `extra` can also be used to add that many additional
+fractional digits than would otherwise be produced.
+
+```python
+>>> import math
+>>> pic = 3, F(22, 7), F(333, 106), F(355, 113)
+>>> print("convergents to pi:", *pic)
+convergents to pi: 3 22/7 333/106 355/113
+>>> print(math.pi); show(pic)
+3.141592653589793
+3.0000
+3.1429
+3.1415
+3.1416
+>>> print(math.pi); show(pic, extra=3)
+3.141592653589793
+3.0000000
+3.1428571
+3.1415094
+3.1415929
 
 ```
 
@@ -141,6 +164,30 @@ Decimal('-80.099999999999994315658113919198513031005859375')
 
 ```
 
+Error cases:
+
+```python
+>>> format_fixed()
+Traceback (most recent call last):
+    ...
+TypeError: format_fixed() missing 1 required positional argument: 'fs'
+
+>>> format_fixed([1], 0)
+Traceback (most recent call last):
+    ...
+TypeError: format_fixed() takes 1 positional argument but 2 were given
+
+>>> format_fixed([1], minfrac=-1)
+Traceback (most recent call last):
+    ...
+ValueError: ('minfrac must be >= 0, not', -1)
+
+>>> format_fixed([1], extra=-1)
+Traceback (most recent call last):
+    ...
+ValueError: ('extra must be >= 0, not', -1)
+
+```
 ## Class `frac2dec`
 
 `c = frac2dec(f)` creates an object that can be used to show

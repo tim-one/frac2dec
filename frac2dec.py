@@ -51,7 +51,7 @@ class frac2dec:
         self.canned = self.prefix + s
         return self.canned
 
-def format_fixed(fs, minfrac=0):
+def format_fixed(fs, /, *, minfrac=0, extra=0):
     """Return list of decimal strings with minimal fractional digits.
 
     >>> format_fixed(200 + i / 1000 for i in range(6))
@@ -60,6 +60,8 @@ def format_fixed(fs, minfrac=0):
 
     if minfrac < 0:
         raise ValueError("minfrac must be >= 0, not", minfrac)
+    if extra < 0:
+        raise ValueError("extra must be >= 0, not", extra)
     fs = tuple(map(Fraction, fs))
     unique = set(fs)
     u2c = {f : frac2dec(f) for f in unique}
@@ -69,6 +71,7 @@ def format_fixed(fs, minfrac=0):
         nfrac = 1
     while len(set(c.get(nfrac) for c in cs)) < len(unique):
         nfrac += 1
+    nfrac += extra
     final = [u2c[f].get(nfrac) for f in fs]
     huge = max(map(len, final))
     return [s.rjust(huge) for s in final]
@@ -81,4 +84,3 @@ if __name__ == "__main__":
         doctest.testfile(TESTFN)
     else:
         print("tesr file", TESTFN, "not found")
-
