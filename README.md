@@ -143,7 +143,7 @@ Decimal('-80.099999999999994315658113919198513031005859375')
 
 ## Class `frac2dec`
 
-`c = frac2dec(f)` creatws an object that can be used to show
+`c = frac2dec(f)` creates an object that can be used to show
 increasingly accurate decimal-string approximations to the number f's
 infinitely precise value.
 
