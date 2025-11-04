@@ -101,8 +101,7 @@ That's hard to do in a readable way!
 >>> from random import randrange, seed
 >>> seed(123443210)
 >>> pick = lambda: randrange(10**30)
->>>
-args = sorted(F(pick(), pick()) for i in range(8))
+>>> args = sorted(F(pick(), pick()) for i in range(8))
 >>> for f in args:
 ...     print(f)
 100383010337217770703803396671/873361031336288422121036518616
