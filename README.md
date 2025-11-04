@@ -147,7 +147,7 @@ Decimal('-80.099999999999994315658113919198513031005859375')
 increasingly accurate decimal-string approximations to the number f's
 infinitely precise value.
 
-`f` can be anything convertible to a `fraction.Fraction. `c.get(nfrac)`
+`f` can be anything convertible to a `fraction.Fraction`. `c.get(nfrac)`
 returns a decimal literal string, correctly rounded (nearest/even)
 to `nfrac` fractional digits.
 
