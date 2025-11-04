@@ -89,7 +89,7 @@ def format_fixed(fs, /, *, minfrac=0, extra=0):
 if __name__ == "__main__":
     import doctest, os
     TESTFN = "README.md"
-    doctest.testmod()
+    print(doctest.testmod())
     if os.path.exists(TESTFN):
         print(doctest.testfile(TESTFN))
     else:
