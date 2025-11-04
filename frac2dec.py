@@ -70,15 +70,13 @@ def format_fixed(fs, /, *, minfrac=0, extra=0):
     if not nfrac and not all(c. exact for c in cs):
         nfrac = 1
     while True:
-        alldifferent = True
         seen = set()
         for c in cs:
             this = c.get(nfrac)
             if this in seen:
-                alldifferent = False
                 break
             seen.add(this)
-        if alldifferent:
+        else:
             break
         nfrac += 1
     nfrac += extra
