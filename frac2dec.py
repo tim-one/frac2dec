@@ -74,10 +74,10 @@ def format_fixed(fs, /, *, minfrac=0, extra=0):
         for c in cs:
             this = c.get(nfrac)
             if this in seen:
-                break
+                break   # boost nfrac and try again
             seen.add(this)
         else:
-            break
+            break   # all strings are unique
         nfrac += 1
     nfrac += extra
     final = [u2c[f].get(nfrac) for f in fs]
